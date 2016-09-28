@@ -1,1 +1,1 @@
-gcc -Wno-implicit-int ji.c -O0 -g -o j && ./j
+gcc ji.c -O0 -g -o j && ./j

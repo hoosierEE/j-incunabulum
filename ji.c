@@ -84,10 +84,10 @@ A ex(I*e){
     if(qp(a)){if(e[1]=='=')R st[a-'a']=ex(e+2);a= st[ a-'a'];}
     R qv(a)?(*vm[a])(ex(e+1)):e[1]?(*vd[e[1]])(a,ex(e+2)):(A)a;
 }
-noun(c){
+A noun(c){
     A z;if(c<'0'||c>'9')R 0;z=ga(0,0,0);*z->p=c-'0';R z;
 }
-verb(c){
+A verb(c){
     I i=0;for(;vt[i];)if(vt[i++]==c)R i;R 0;
 }
 I *wd(C*s){
