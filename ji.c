@@ -1,23 +1,21 @@
 #include <stdlib.h>
 #include <string.h>
-typedef char C;
-typedef long I;
-typedef void _;
-typedef struct a{I t,r,d[3],p[2];}* A;  // sigh
+typedef char C; typedef long I; typedef void _;
+typedef struct a{I t,r,d[3],p[2];}* A;
 #define P printf
 #define R return
-#define V1(f) A f(A w) // monad
-#define V2(f) A f(A a,A w) // dyad
+#define V1(f) A f(A w)
+#define V2(f) A f(A a,A w)
 #define DO(n,x) for(I i=0,_n=(n);i<_n;++i){x;}
 
 // utils
-I *ma(I n){// malloc
+I *ma(I n){
     R(I*)malloc(n*4);
 }
 I mv(I*d,I*s,I n){
     DO(n,d[i]=s[i]);
 }
-I tr(I r,I*d){
+I tr(I r,I*d){ // rank
     I z=1; DO(r,z=z*d[i]); R z;
 }
 A ga(I t,I r,I*d){
@@ -31,7 +29,8 @@ V1(iota){
     I n=*w->p; A z=ga(0,1,&n); DO(n,z->p[i]=i); R z;
 }
 V2(plus){
-    I r=w->r,*d=w->d,n=tr(r,d);A z=ga(0,r,d); DO(n,z->p[i]=a->p[i]+w->p[i]);R z;
+    I r=w->r, *d=w->d, n=tr(r,d);
+    A z=ga(0,r,d); DO(n,z->p[i]=a->p[i]+w->p[i]);R z;
 }
 V2(from){
     I r=w->r-1,*d=w->d+1,n=tr(r,d); A z=ga(w->t,r,d);mv(z->p,w->p+(n**a->p),n);R z;
@@ -96,4 +95,4 @@ I *wd(C*s){
     DO(n,e[i]=(a=noun(c=s[i]))?a:(a=verb(c))?a:c);e[n]=0;R e;
 }
 
-main(){C s[99];while(gets(s))pr(ex(wd(s)));}
+int main(int argc, C**argv){C s[99];while(gets(s))pr(ex(wd(s))); R 0;}
