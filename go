@@ -1,1 +1,1 @@
-clang -Wno-implicit-int mj.c -O0 -g -o mj && ./mj
+gcc -Wno-implicit-int ji.c -O0 -g -o j && ./j
